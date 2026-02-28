@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav class="navbar-projet">
+    <span class="titre">📊 Tableau de Bord</span>
+    <a href="/">← Retour aux tâches</a>
+</nav>
+
+<div class="container mt-4">
+
+    <h5 class="mb-3 fw-bold">Statistiques globales</h5>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card-stat total">
+                <div class="chiffre"><%= total %></div>
+                <div class="label">Total des tâches</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-stat termine">
+                <div class="chiffre"><%= terminee %></div>
+                <div class="label">Terminées</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-stat pct">
+                <div class="chiffre"><%= pct %>%</div>
+                <div class="label">Taux de complétion</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-stat retard">
+                <div class="chiffre"><%= retard %></div>
+                <div class="label">En retard </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Répartition par priorité -->
+    <div class="card mb-4">
+        <div class="card-header fw-bold">Répartition par priorité</div>
+        <div class="card-body">
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <span>🔴 Haute</span>
+                    <span class="fw-bold"><%= priorites.haute %></span>
+                </div>
+                <div class="progress mt-1">
+                    <div class="progress-bar bg-danger"
+                         style="width: <% = total > 0 ? Math.round(priorites.haute / total * 100) : 0 %>%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <span>🟡 Moyenne</span>
+                    <span class="fw-bold"><%= priorites.moyenne %></span>
+                </div>
+                <div class="progress mt-1">
+                    <div class="progress-bar bg-warning"
+                         style="width: <%= total > 0 ? Math.round(priorites.moyenne / total * 100) : 0 %>%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <span>🟢 Basse</span>
+                    <span class="fw-bold"><%= priorites.basse %></span>
+                </div>
+                <div class="progress mt-1">
+                    <div class="progress-bar bg-success"
+                         style="width: <%= total > 0 ? Math.round(priorites.basse / total * 100) : 0 %>%">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+   
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
