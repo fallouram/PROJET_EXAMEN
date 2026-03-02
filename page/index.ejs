@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Taches</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar-projet">
+        <span class="titre">📋 Gestion des Tâches</span>
+        <a href="/dashboard">📊 Tableau de bord</a>
+    </nav>
+
+    <!-- FORMULAIRE -->
+    <div class="container mt-4">
+        <div class="card col-md-6 offset-3">
+            <div class="card-header bg-primary text-white text-center">Nouvelle Tache</div>
+            <div class="card-body">
+                <form action="/tache" method="POST">
+                    <div class="form-group">
+                        <label>Titre</label>
+                        <input type="text" class="form-control" name="titre">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" cols="10" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Responsable</label>
+                        <input type="text" class="form-control" name="responsable">
+                    </div>
+                    <div class="form-group">
+                        <label>Priorité</label>
+                        <select class="form-control" name="priorite">
+                            <option value="basse">basse</option>
+                            <option value="moyenne">Moyenne</option>
+                            <option value="haute">Haute</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>date_limite</label>
+                        <input type="date" class="form-control" name="date_limite">
+                    </div>
+                    <div class="form-group">
+                        <label>Statut</label>
+                        <select class="form-control" name="statut">
+                            <option value="a faire">À Faire</option>
+                            <option value="en cours">En Cours</option>
+                            <option value="Terminer">Terminer</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <button class="btn btn-primary btn-sm" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECHERCHE ET FILTRES  -->
+    <div class="container mt-3">
+        <div class="card col-md-10 offset-1">
+            <div class="card-body">
+                <form action="/" method="GET" class="row g-2 align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label">🔍 Rechercher</label>
+                        <input type="text" class="form-control form-control-sm" name="recherche"
+                            placeholder="Titre ou description..." value="<%= recherche %>">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Statut</label>
+                        <select class="form-select form-select-sm" name="filtre_statut">
+                            <option value="">-- Tous --</option>
+                            <option value="a faire" <%=filtre_statut==='a faire' ? 'selected' : '' %>>À faire</option>
+                            <option value="en cours" <%=filtre_statut==='en cours' ? 'selected' : '' %>>En cours
+                            </option>
+                            <option value="Terminer" <%=filtre_statut==='Terminer' ? 'selected' : '' %>>Terminée
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Priorité</label>
+                        <select class="form-select form-select-sm" name="filtre_priorite">
+                            <option value="">-- Toutes --</option>
+                            <option value="basse" <%=filtre_priorite==='basse' ? 'selected' : '' %>>Basse</option>
+                            <option value="moyenne" <%=filtre_priorite==='moyenne' ? 'selected' : '' %>>Moyenne</option>
+                            <option value="haute" <%=filtre_priorite==='haute' ? 'selected' : '' %>>Haute</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex gap-1">
+                        <button class="btn btn-primary btn-sm w-100" type="submit">Filtrer</button>
+                        <a href="/" class="btn btn-outline-secondary btn-sm w-100">Reset</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- LISTE DES TÂCHES -->
+    <div class="container mt-4">
+        <div class="card col-md-10 offset-1">
+            <div class="card-header bg-danger text-white text-center">Liste des Tâches</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Responsable</th>
+                            <th>Priorité</th>
+                            <th>date_creation</th>
+                            <th>date_limite</th>
+                            <th>Statut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% taches.forEach(function(tache) { %>
+                            <% var dateCreation=tache.date_creation ? new
+                                Date(tache.date_creation).toISOString().slice(0,10) : '-' ; var
+                                dateLimite=tache.date_limite ? new Date(tache.date_limite).toISOString().slice(0,10)
+                                : '-' ; // On convertit en minuscule pour éviter les problèmes de majuscules var
+                                statut=tache.statut ? tache.statut.toLowerCase().trim() : '' ; %>
+                                <tr class="<%= tache.en_retard ? 'ligne-retard' : '' %>">
+                                    <td>
+                                        <%= tache.id %>
+                                    </td>
+
+                                    <td>
+                                        <%= tache.titre %>
+                                            <% if (tache.en_retard) { %>
+                                                <span class="badge-retard">⚠ Retard</span>
+                                                <% } %>
+                                    </td>
+
+                                    <td>
+                                        <%= tache.description || '-' %>
+                                    </td>
+                                    <td>
+                                        <%= tache.responsable || '-' %>
+                                    </td>
+
+                                    <td><span class="badge-<%= tache.priorite %>">
+                                            <%= tache.priorite %>
+                                        </span></td>
+
+                                    <td>
+                                        <%= dateCreation %>
+                                    </td>
+                                    <td>
+                                        <%= dateLimite %>
+                                    </td>
+
+
+                                    <td>
+                                        <% if (statut==='terminer' || statut==='terminée' || statut==='termine' ) { %>
+                                            <span class="badge-terminer">Terminée</span>
+                                            <% } else if (statut==='en cours' ) { %>
+                                                <span class="badge-encours">En cours</span>
+                                                <% } else { %>
+                                                    <span class="badge-afaire">À faire</span>
+                                                    <% } %>
+                                    </td>
+
+                                    <td>
+
+                                        <form action="/tache/<%= tache.id %>/delete" method="POST"
+                                            style="display:inline"
+                                            onsubmit="return confirm('Voulez-vous vraiment supprimer cette tâche ?')">
+                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                        </form>
+
+
+                                        <% if (statut !=='terminer' && statut !=='terminée' && statut !=='termine' ) {
+                                            %>
+                                            <a href="/modifier/<%= tache.id %>"
+                                                class="btn btn-warning btn-sm">Modifier</a>
+                                            <a href="/changer/<%= tache.id %>"
+                                                class="btn btn-info btn-sm text-white">Changer</a>
+                                            <% } %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+
+                                    <% if (taches.length===0) { %>
+                                        <tr>
+                                            <td colspan="9" class="text-center text-muted">Aucune tâche pour le moment
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

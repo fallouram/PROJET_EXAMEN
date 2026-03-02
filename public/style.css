@@ -1,0 +1,249 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css");
+
+:root {
+    --emeraude:       #0d4f3c;   
+    --emeraude-clair: #1a7a5e;   
+    --emeraude-pale:  #e8f5f0;   
+    --or:             #c9a84c;   
+    --or-clair:       #f0d080;   
+    --creme:          #faf8f3;   
+    --texte:          #1a2e25;   
+    --gris-doux:      #e2ede8;  
+}
+
+
+body {
+    background-color: var(--creme);
+    font-family: 'Outfit', sans-serif;
+    color: var(--texte);
+}
+
+.navbar-projet {
+    background: linear-gradient(135deg, var(--emeraude) 0%, #0a3d2e 100%);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 16px rgba(13,79,60,0.25);
+    border-bottom: 2px solid var(--or);
+}
+.navbar-projet .titre {
+    color: var(--or-clair);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.navbar-projet a {
+    color: var(--or-clair);
+    text-decoration: none;
+    border: 1px solid var(--or);
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.navbar-projet a:hover {
+    background-color: var(--or);
+    color: var(--emeraude);
+}
+
+
+.card {
+    border: 1px solid var(--gris-doux);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(13,79,60,0.07);
+}
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.card-header.bg-primary {
+    background: linear-gradient(135deg, var(--emeraude), var(--emeraude-clair)) !important;
+    border-bottom: 2px solid var(--or) !important;
+    color: var(--or-clair) !important;
+}
+
+.card-header.bg-danger {
+    background: linear-gradient(135deg, #0a3d2e, var(--emeraude)) !important;
+    border-bottom: 2px solid var(--or) !important;
+    color: var(--or-clair) !important;
+}
+
+
+.card-header.bg-warning {
+    background: linear-gradient(135deg, #a07820, var(--or)) !important;
+    color: #1a2e25 !important;
+}
+
+.btn-primary {
+    background-color: var(--emeraude) !important;
+    border-color: var(--emeraude) !important;
+    color: white !important;
+    font-weight: 500;
+    border-radius: 8px;
+}
+.btn-primary:hover {
+    background-color: var(--emeraude-clair) !important;
+    border-color: var(--emeraude-clair) !important;
+}
+
+.btn-outline-secondary {
+    border-color: var(--gris-doux) !important;
+    color: var(--emeraude) !important;
+    border-radius: 8px;
+}
+.btn-outline-secondary:hover {
+    background-color: var(--emeraude-pale) !important;
+}
+
+
+.btn-danger {
+    background-color: #b03a2e !important;
+    border-color: #b03a2e !important;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+
+.btn-warning {
+    background-color: var(--or) !important;
+    border-color: var(--or) !important;
+    color: var(--emeraude) !important;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.btn-warning:hover {
+    background-color: var(--or-clair) !important;
+}
+
+
+.btn-info {
+    background-color: var(--emeraude-clair) !important;
+    border-color: var(--emeraude-clair) !important;
+    color: white !important;
+    border-radius: 8px;
+    font-weight: 500;
+}
+.btn-info:hover {
+    background-color: var(--emeraude) !important;
+}
+
+
+.table thead.table-dark th,
+.table > thead > tr > th {
+    background-color: var(--emeraude) !important;
+    color: var(--or-clair) !important;
+    border-color: var(--emeraude-clair) !important;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: var(--emeraude-pale);
+}
+.table > tbody > tr:hover > * {
+    background-color: #d4ede5 !important;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--emeraude-clair) !important;
+    box-shadow: 0 0 0 3px rgba(26,122,94,0.15) !important;
+}
+.form-control, .form-select {
+    border-radius: 8px;
+    border-color: var(--gris-doux);
+}
+
+.badge-afaire, .badge-encours, .badge-terminer {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+.badge-afaire   { background-color: #c8ddd7; color: var(--emeraude); }
+.badge-encours  { background-color: #f0d080; color: #7a5500; }
+.badge-terminer { background-color:var(--emeraude); color: var(--or-clair); }
+
+
+.badge-haute, .badge-moyenne, .badge-basse {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-haute    { background-color: #b03a2e; color: white; }
+.badge-moyenne  { background-color: var(--or); color: var(--emeraude); }
+.badge-basse    { background-color: var(--emeraude-clair); color: white; }
+
+
+.ligne-retard {
+    background-color: #fdf0ee !important;
+    border-left: 3px solid #b03a2e;
+}
+.badge-retard {
+    display: inline-block;
+    background-color: #b03a2e;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    margin-left: 6px;
+}
+
+
+.card-stat {
+    border: none;
+    border-radius: 14px;
+    text-align: center;
+    padding: 28px;
+    color: white;
+    box-shadow: 0 4px 16px rgba(13,79,60,0.15);
+    position: relative;
+    overflow: hidden;
+}
+.card-stat::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+} 
+.card-stat .chiffre {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+}
+.card-stat .label {
+    font-size: 14px;
+    margin-top: 6px;
+    opacity: 0.85;
+    font-weight: 500;
+}
+.card-stat.total   { background: linear-gradient(135deg, var(--emeraude), #0a3d2e); border-bottom: 3px solid var(--or); }
+.card-stat.termine { background: linear-gradient(135deg, #1a7a5e, #0d5c46); border-bottom: 3px solid var(--or-clair); }
+.card-stat.pct     { background: linear-gradient(135deg, var(--or), #a07820); border-bottom: 3px solid var(--emeraude); }
+.card-stat.retard  { background: linear-gradient(135deg, #b03a2e, #7a2820); border-bottom: 3px solid var(--or); }
+
+
+.progress {
+    background-color: var(--gris-doux);
+    border-radius: 999px;
+}
+.progress-bar.bg-success {
+    background-color: var(--emeraude-clair) !important;
+    border-radius: 999px;
+}
+.progress-bar.bg-danger  { background-color: #b03a2e !important; }
+.progress-bar.bg-warning { background-color: var(--or) !important; }
